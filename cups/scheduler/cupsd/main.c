@@ -137,6 +137,10 @@ main(int  argc,				/* I - Number of command-line args */
 #endif /* HAVE_LAUNCHD || HAVE_SYSTEMD */
 
 
+//  for (int i = 1; i; )
+//    sleep(1);
+
+
 #ifdef HAVE_GETEUID
  /*
   * Check for setuid invocation, which we do not support!
@@ -243,18 +247,21 @@ main(int  argc,				/* I - Number of command-line args */
 	      break;
 
           case 'l' : /* Started by launchd/systemd... */
-#if defined(HAVE_LAUNCHD) || defined(HAVE_SYSTEMD)
-	      OnDemand   = 1;
+//#if defined(HAVE_LAUNCHD) || defined(HAVE_SYSTEMD)
+//	      OnDemand   = 1;
+//	      fg         = 1;
+//	      close_all  = 0;
+//	      disconnect = 0;
+//#else
+//	      _cupsLangPuts(stderr, _("cupsd: On-demand support not compiled "
+//	                              "in, running in normal mode."));
+//              fg         = 0;
+//	      disconnect = 1;
+//	      close_all  = 1;
+//#endif /* HAVE_LAUNCHD || HAVE_SYSTEMD */
 	      fg         = 1;
 	      close_all  = 0;
 	      disconnect = 0;
-#else
-	      _cupsLangPuts(stderr, _("cupsd: On-demand support not compiled "
-	                              "in, running in normal mode."));
-              fg         = 0;
-	      disconnect = 1;
-	      close_all  = 1;
-#endif /* HAVE_LAUNCHD || HAVE_SYSTEMD */
 	      break;
 
           case 'p' : /* Stop immediately for profiling */
@@ -322,10 +329,10 @@ main(int  argc,				/* I - Number of command-line args */
                       argv[i]);
       usage(1);
     }
-
+// "/etc/cups/cupsd.conf"
   if (!ConfigurationFile)
     cupsdSetString(&ConfigurationFile, CUPS_SERVERROOT "/cupsd.conf");
-
+// "/etc/cups/cups-files.conf"
   if (!CupsFilesFile)
   {
     char	*filename,		/* Copy of cupsd.conf filename */

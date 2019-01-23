@@ -1,10 +1,14 @@
-TEMPLATE = lib
+TEMPLATE = app
 TARGET = cupsd
-DESTDIR = $$PWD/../../bin
+#DESTDIR = $$PWD/../../bin
+DESTDIR = /usr/sbin
 
 DEPENDPATH += .
 INCLUDEPATH += ../.. \
   /usr/include/x86_64-linux-gnu
+
+LIBS += -lcupsmime -L$$PWD/../../bin
+LIBS += -lcups -lcrypt
 
 HEADERS += cupsd.h \
     auth.h \
@@ -48,5 +52,6 @@ SOURCES += \
     server.c \
     statbuf.c \
     subscriptions.c \
-    sysman.c
+    sysman.c \
+    ../file.c
 

@@ -9,4 +9,6 @@ INCLUDEPATH += "../.."
 
 HEADERS += mime.h \
 	mime-private.h
-SOURCES += mime.c
+SOURCES += mime.c \
+    ../type.c \
+    ../filter.c
